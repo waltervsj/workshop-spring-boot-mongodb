@@ -1,11 +1,13 @@
 package com.walter.workshopmongo.services;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.walter.workshopmongo.domain.User;
+import com.walter.workshopmongo.dto.UserDTO;
 import com.walter.workshopmongo.repositories.UserRepository;
 
 @Service
@@ -13,7 +15,9 @@ public class UserService {
 	@Autowired
 	UserRepository userRepository;
 	
-	public List<User> findAll() {
-		return userRepository.findAll();
+	public List<UserDTO> findAll() {
+		List<User> users = userRepository.findAll();
+		List<UserDTO> dtoUsers = users.stream().map(x -> new UserDTO(x)).collect(Collectors.toList());
+		return dtoUsers;
 	}
 }
