@@ -31,4 +31,12 @@ public class UserService {
 
 		return user.get();
 	}
+	
+	public void create(User user) {
+		userRepository.save(user);
+	}
+	
+	public User fromDTO(UserDTO userDTO) {
+		return new User(userDTO.getId(), userDTO.getName(), userDTO.getEmail());
+	}
 }
