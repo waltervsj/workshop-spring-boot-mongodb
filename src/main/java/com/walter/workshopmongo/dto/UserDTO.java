@@ -2,7 +2,6 @@ package com.walter.workshopmongo.dto;
 
 import java.io.Serializable;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.walter.workshopmongo.domain.User;
 
 public class UserDTO implements Serializable {
@@ -12,7 +11,6 @@ public class UserDTO implements Serializable {
 	private String name;
 	private String email;
 	
-	@JsonIgnore
 	public String getId() {
 		return id;
 	}
@@ -36,13 +34,12 @@ public class UserDTO implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
+	
 	public UserDTO() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public UserDTO(User user) {
-		//this.id = user.getId();
+		this.id = user.getId();
 		this.name = user.getName();
 		this.email = user.getEmail();
 	}
