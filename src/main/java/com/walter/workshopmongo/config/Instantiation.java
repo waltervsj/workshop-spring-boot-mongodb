@@ -3,14 +3,13 @@ package com.walter.workshopmongo.config;
 import java.util.Arrays;
 import java.util.Date;
 
-import javax.print.attribute.standard.DateTimeAtCompleted;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
 import com.walter.workshopmongo.domain.Post;
 import com.walter.workshopmongo.domain.User;
+import com.walter.workshopmongo.dto.AuthorDTO;
 import com.walter.workshopmongo.repositories.PostRepository;
 import com.walter.workshopmongo.repositories.UserRepository;
 
@@ -35,9 +34,12 @@ public class Instantiation implements CommandLineRunner {
 		
 		postRepository.deleteAll();
 		
-		Post p1 = new Post(null, new Date(), "Post title", "Post body", u1);
-		Post p2 = new Post(null, new Date(), "Post title 2", "Post body 2", u2);
-		Post p3 = new Post(null, new Date(), "Post title 3", "Post body 3", u2);
+		AuthorDTO author1 = new AuthorDTO(u1);
+		AuthorDTO author2 = new AuthorDTO(u2);
+		
+		Post p1 = new Post(null, new Date(), "Post title", "Post body", author1);
+		Post p2 = new Post(null, new Date(), "Post title 2", "Post body 2", author2);
+		Post p3 = new Post(null, new Date(), "Post title 3", "Post body 3", author2);
 		
 		postRepository.saveAll(Arrays.asList(p1, p2, p3));
 	}
