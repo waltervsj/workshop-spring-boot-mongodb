@@ -1,5 +1,6 @@
 package com.walter.workshopmongo.config;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 
@@ -42,6 +43,10 @@ public class Instantiation implements CommandLineRunner {
 		Post p3 = new Post(null, new Date(), "Post title 3", "Post body 3", author2);
 		
 		postRepository.saveAll(Arrays.asList(p1, p2, p3));
+		
+		u1.getPosts().addAll(Arrays.asList(p1, p2, p3));
+		
+		userRepository.save(u1);
 	}
 
 }
