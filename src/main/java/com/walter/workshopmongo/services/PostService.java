@@ -1,5 +1,6 @@
 package com.walter.workshopmongo.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,5 +25,9 @@ public class PostService {
 		if (post.isEmpty())
 			throw new ObjectNotFoundException("Post not found");
 		return post.get();
+	}
+	
+	public List<Post> findByTitle(String text) {
+		return postRepository.findByTitleContainingIgnoreCase(text);
 	}
 }
