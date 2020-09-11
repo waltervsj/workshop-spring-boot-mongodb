@@ -20,15 +20,15 @@ public class PostResource {
 
 	@Autowired
 	PostService postService;
-	
+
 	@GetMapping("/{id}")
 	public ResponseEntity<Post> findById(@PathVariable String id) {
 		return ResponseEntity.ok().body(postService.findById(id));
 	}
-	
+
 	@GetMapping("/titlesearch")
-	public ResponseEntity<List<Post>> findByTitle(@RequestParam(value="text", defaultValue = "") String text) {
-		text = URL.decodeParam(text); 
-		return ResponseEntity.ok().body(postService.findByTitle(text));
+	public ResponseEntity<List<Post>> findByTitle(@RequestParam(value = "text", defaultValue = "") String text) {
+		text = URL.decodeParam(text);
+		return ResponseEntity.ok().body(postService._findByTitle(text));
 	}
 }
